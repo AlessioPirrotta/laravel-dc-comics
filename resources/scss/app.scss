@@ -1,6 +1,8 @@
+
 @use "./partials/_variables" as *;
 @use "./partials/_mixins" as *;
 @import "bootstrap/scss/bootstrap";
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,6 +11,7 @@
 
 html {
     font-family: sans-serif;
+    overflow-x: hidden;
 }
 
 img {
@@ -16,39 +19,85 @@ img {
     display: block;
 }
 
-li {
-    list-style-type: none;
-}
+header{
+    #main {
+        background-color: white;
+        width: 101%;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 200px;
 
-a {
-    text-decoration: none;
-    color: black;
+    }
 
-    &:hover {
-        text-decoration: underline;
+    ul {
+        list-style: none;
+        text-transform: uppercase;
+        font-weight: 600;
+        display: flex;
+        gap: 20px
     }
 }
 
-button:hover {
-    cursor: pointer;
-}
-
-h1 {
-    color: $font-color;
-    @include main-font-center;
-}
-
-header {
-    h1 {
-        color: $font-color-third;
+main{
+    #jumbo{
+        height: 400px;
+        overflow: hidden;
+        width: 100%;
     }
 
-    nav {
-        ul {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            gap: 20px;
-        }
+    button{
+        color: white;
+        background-color:#0282f9;
+        width: 200px;
+        height: 50px;
+        margin-right: 50px;
+        border: none;
+        margin-bottom: 20px;
+
     }
+
+
+    figure{ color: white;
+        width: 180px;
+        aspect-ratio: 1;
+        overflow: hidden;
+    }
+
+
+
+    #card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #cur{
+        position: absolute;
+        top: 370px;
+        left: 200px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
 }
+
+
+#center{
+    img{
+        width: 60px;
+    };
+
+    #locator{
+        width: 40px;
+    }
+    padding-block: 40px;
+
+    display:flex;
+
+    gap:90px
+}
+
+
