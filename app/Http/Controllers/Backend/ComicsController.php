@@ -31,7 +31,7 @@ class ComicsController extends Controller
      */
     public function store(Request $request)
     {
-        // $comic = Comics::find()
+
     }
 
     /**
@@ -39,6 +39,9 @@ class ComicsController extends Controller
      */
     public function show(string $id)
     {
+        $comic = Comics::find($id);
+        $data = ['character', 'comic', 'movies', 'tv', 'games', 'collectibles', 'videos', 'fans', 'news', 'shop'];
+        return view ('pages.comicsview.show', compact('comic', 'data'));
 
     }
 

@@ -5,9 +5,10 @@
 @section('main')
 
 <main>
-    <h2>Index Dc</h2>
+    <h2>{{$comic->title}}</h2>
+    {{($comic->description)}}
 </main>
 
-@endforeach
+@endsection
 
 
