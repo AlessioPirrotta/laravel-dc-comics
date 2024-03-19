@@ -13,7 +13,9 @@ class ComicsController extends Controller
      */
     public function index()
     {
-        $comics= config('comics');
+        // $comics= config('comics');
+        $comics= Comics::all();
+
         $data = ['character', 'comic', 'movies', 'tv', 'games', 'collectibles', 'videos', 'fans', 'news', 'shop'];
         return view('pages.comicsView.index', compact('comics', 'data'));
     }
@@ -23,7 +25,9 @@ class ComicsController extends Controller
      */
     public function create()
     {
-        //
+        $data = ['character', 'comic', 'movies', 'tv', 'games', 'collectibles', 'videos', 'fans', 'news', 'shop'];
+
+        return view ('pages.comicsview.create', compact( 'data'));
     }
 
     /**
@@ -31,6 +35,13 @@ class ComicsController extends Controller
      */
     public function store(Request $request)
     {
+        $formData = $request->All();
+        $newComic= new Comics();
+        $newComic->fill($formData);
+        $newComic->save();
+        $comics= Comics::all();
+        $data = ['character', 'comic', 'movies', 'tv', 'games', 'collectibles', 'videos', 'fans', 'news', 'shop'];
+        return view('pages.comicsView.index', compact('comics', 'data'));
 
     }
 
@@ -40,6 +51,7 @@ class ComicsController extends Controller
     public function show(string $id)
     {
         $comic = Comics::find($id);
+        // findOrFail
         $data = ['character', 'comic', 'movies', 'tv', 'games', 'collectibles', 'videos', 'fans', 'news', 'shop'];
         return view ('pages.comicsview.show', compact('comic', 'data'));
 
@@ -50,7 +62,11 @@ class ComicsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comic = Comics::find($id);
+        // findOrFail
+        $data = ['character', 'comic', 'movies', 'tv', 'games', 'collectibles', 'videos', 'fans', 'news', 'shop'];
+        return view ('pages.comicsview.edit', compact('comic', 'data'));
+
     }
 
     /**
@@ -58,7 +74,10 @@ class ComicsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $formData = $request->All();
+        $comic = Comics::find($id);
+        $comic->update($formData);
+        return redirect()->route('comics.show', ['comic'=> $comic->id]);
     }
 
     /**
@@ -66,6 +85,10 @@ class ComicsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $comic = Comics::find($id);
+        $comic ->delete();
+        // findOrFail
+        // $data = ['character', 'comic', 'movies', 'tv', 'games', 'collectibles', 'videos', 'fans', 'news', 'shop'];
+        return redirect()->route('comics.index');
     }
 }
