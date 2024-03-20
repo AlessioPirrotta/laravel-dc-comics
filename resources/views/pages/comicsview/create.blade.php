@@ -7,12 +7,21 @@
 <main>
     <h2>Crea Nuovo Fumetto</h2>
     <div class="container">
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <form class="d-flex flex-column" action="{{ route('comics.store') }}" method="POST">
 
             @csrf
 
             <label for="title">Titolo:</label>
-            <input type="text" id="title" name="title" placeholder="Title">
+            <input type="text" id="title" name="title" placeholder="Title" required>
 
             <label for="description">Descrizione:</label>
             <textarea id="description" name="description" placeholder="Description"></textarea>
